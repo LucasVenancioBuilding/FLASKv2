@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuários</title>
+</head>
+<body>
+    <h1>Lista de Usuários Cadastrados</h1>
+    <ul>
+        {% for user in users %}
+        <li>
+            ID: {{ user.id }} - Nome: {{ user.name }} - Email: {{ user.email }}
+            | <a href="{{ url_for('edit_user', user_id=user.id) }}">Editar</a>
+            | <a href="{{ url_for('delete_user', user_id=user.id) }}" onclick="return confirm('Tem certeza que deseja deletar?');">Deletar</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <a href="/">Cadastrar novo usuário</a>
+</body>
+</html>
