@@ -9,7 +9,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializando o banco de dados
 db = SQLAlchemy(app)
-'''migrate = Migrate(app, db)  # Integrando o Flask-Migrate'''
 
 # Modelo de exemplo
 class User(db.Model):
