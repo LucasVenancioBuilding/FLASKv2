@@ -48,11 +48,12 @@ def list_users():
     users = User.query.all()
     return render_template('list.html', users=users)
 
-
+    # Rota para editar um usuário.
 @app.route('/edit/<int:user_id>', methods=['GET', 'POST'])
 def edit_user(user_id):
     user = User.query.get_or_404(user_id)
 
+    # Se a requisição for POST, atualiza as informações do usuário com os dados do formulário e salva no banco de dados.
     if request.method == 'POST':
         user.name = request.form.get('name')
         user.address = request.form.get('address')
@@ -62,13 +63,14 @@ def edit_user(user_id):
         return redirect(url_for('list_users'))
 
     return render_template('edit.html', user=user)
+    #Se for GET, renderiza o template de edição (edit.html) com as informações do usuário.
 
 
 @app.route('/delete/<int:user_id>')
 def delete_user(user_id):
     user = User.query.get_or_404(user_id)
-    db.session.delete(user)
-    db.session.commit()
+    db.session.delete(user) #Remove o usuário do banco de dados.
+    db.session.commit()     #Confirma a exclusão.
     return redirect(url_for('list_users'))
 
 
